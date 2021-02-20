@@ -2,13 +2,27 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { configureStore } from "./store.js";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/lib/integration/react";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
+console.log("before");
+
+const store = configureStore();
+
+console.log("after");
+
+const persistor = persistStore(store);
+
+console.log(3);
+
 ReactDOM.render(
-  <Provider store={configureStore()}>
-    <App />
+  <Provider store={store}>
+    <PersistGate loading={<div>Loading ...</div>} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );

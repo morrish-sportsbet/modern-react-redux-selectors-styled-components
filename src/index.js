@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { congigureStore } from "./store";
+import { configureStore } from "./store.js";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";

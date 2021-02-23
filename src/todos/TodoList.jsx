@@ -6,17 +6,12 @@ import { connect } from "react-redux";
 import { displayAlert } from "./thunks";
 import "./TodoList.css";
 
-const TodoList = ({
-  todos = [],
-  onRemovePressed,
-  onCompletedPressed,
-  onDisplayAlertClicked,
-}) => (
+const TodoList = ({ todos = [], onRemovePressed, onCompletedPressed }) => (
   <div className="list-wrapper">
     <NewTodoForm />
     {todos.map((todo) => (
       <TodoListItem
-        onCompletedPressed={onDisplayAlertClicked}
+        onCompletedPressed={onCompletedPressed}
         onRemovePressed={onRemovePressed}
         todo={todo}
       />

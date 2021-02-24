@@ -35,8 +35,8 @@ app.get("/todos", (req, res) => {
 });
 
 //The endpoint to get the fake list of todos, but with a delay
-app.get("/todos", (req, res) => {
-  setTimeout(() => req.status(200).json(fakeTodos), 2000);
+app.get("/todos-delay", (req, res) => {
+  setTimeout(() => res.status(200).json(fakeTodos), 2000);
 });
 
 //The endpoint to create a new todo.
@@ -76,7 +76,7 @@ app.delete("/todos/:id", (req, res) => {
   const { id } = req.params;
   const removedTodo = fakeTodos.find((todo) => todo.id === id);
   fakeTodos = fakeTodos.filter((todo) => todo.id !== id);
-  res.status(200).json(removeTodo);
+  res.status(200).json(removedTodo);
 });
 
 app.listen(8080, () => console.log("Server is listening to port 8080..."));

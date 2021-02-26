@@ -36,10 +36,12 @@ export const todos = (state = [], actions) => {
       return state.filter((todo) => todo.id !== todoToRemove.id);
     }
     case MARK_TODO_AS_COMPLETED: {
-      const { text } = payload;
+      console.log("reducer starts to update");
+      console.log("current todos: ", state);
+      const { todo: updatedTodo } = payload;
       return state.map((todo) => {
-        if (todo.text === text) {
-          return { ...todo, isCompleted: true };
+        if (todo.id === updatedTodo.id) {
+          return updatedTodo;
         }
         return todo;
       });

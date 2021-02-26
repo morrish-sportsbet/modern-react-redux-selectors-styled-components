@@ -4,6 +4,7 @@ import {
   loadTodosInProgress,
   createTodo,
   removeTodo,
+  markTodoAsCompleted,
 } from "./actions";
 
 export const loadTodos = () => async (dispatch, getState) => {
@@ -49,6 +50,25 @@ export const removeTodoRequest = (id) => async (dispatch) => {
     const removedTodo = await response.json();
     dispatch(removeTodo(removedTodo));
   } catch (e) {
+    dispatch(displayAlert(e));
+  }
+};
+
+export const markTodoAsCompletedRequest = (id) => async (dispatch) => {
+  try {
+    const response = await fetch(
+      `http://localhost:8080/todos/${id}/completed`,
+      {
+        method: "post",
+      }
+    );
+
+    const updatedTodo = await response.json();
+    console.log("updatedTodo from the server is: ");
+    dispatch(markTodoAsCompleted(updatedTodo));
+    console.log("after recieving the updated todo, dispatched corectly.");
+  } catch (e) {
+    console.log("the request of updating isCompleted props did not work!!");
     dispatch(displayAlert(e));
   }
 };

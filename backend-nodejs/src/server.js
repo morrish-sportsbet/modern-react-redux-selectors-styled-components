@@ -62,7 +62,7 @@ app.post("/todos", (req, res) => {
 app.post("/todos/:id/completed", (req, res) => {
   const { id } = req.params;
   const matchingTodo = fakeTodos.find((todo) => todo.id === id);
-  const updatedTodo = { ...matchingTodo, iscompleted: true };
+  const updatedTodo = { ...matchingTodo, isCompleted: true };
   if (updatedTodo) {
     fakeTodos = fakeTodos.map((todo) => (todo.id === id ? updatedTodo : todo));
     res.status(200).json(updatedTodo);

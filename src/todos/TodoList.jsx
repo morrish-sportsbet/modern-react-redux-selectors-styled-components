@@ -16,7 +16,7 @@ import {
 } from "./selectors";
 
 const ListWrapper = styled.div`
-  max-width: 600px;
+  max-width: 500px;
   margin: auto;
 `;
 

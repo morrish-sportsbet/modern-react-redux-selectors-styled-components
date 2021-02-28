@@ -8,11 +8,17 @@ import {
   removeTodoRequest,
   markTodoAsCompletedRequest,
 } from "./thunks";
-import { getTodos, getTodosLoading } from "./selectors";
+import {
+  getTodos,
+  getTodosLoading,
+  getCompletedTodos,
+  getIncompleteTodos,
+} from "./selectors";
 import "./TodoList.css";
 
 const TodoList = ({
-  todos = [],
+  completedTodos,
+  incompleteTodos,
   onRemovePressed,
   onCompletedPressed,
   isLoading,
@@ -25,7 +31,16 @@ const TodoList = ({
   const content = (
     <div className="list-wrapper">
       <NewTodoForm />
-      {todos.map((todo) => (
+      <h3>Incomplete: </h3>
+      {incompleteTodos.map((todo) => (
+        <TodoListItem
+          onCompletedPressed={onCompletedPressed}
+          onRemovePressed={onRemovePressed}
+          todo={todo}
+        />
+      ))}
+      <h3>Completed: </h3>
+      {completedTodos.map((todo) => (
         <TodoListItem
           onCompletedPressed={onCompletedPressed}
           onRemovePressed={onRemovePressed}
@@ -38,8 +53,9 @@ const TodoList = ({
 };
 
 const mapStateToProps = (state) => ({
-  todos: getTodos(state),
   isLoading: getTodosLoading(state),
+  completedTodos: getCompletedTodos(state),
+  incompleteTodos: getIncompleteTodos(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

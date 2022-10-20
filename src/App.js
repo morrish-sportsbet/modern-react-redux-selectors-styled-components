@@ -6,7 +6,7 @@ const AppContainer = styled.div`
   font-family: Arial, Helvetica, Sans-serif;
   color: #222222;
   width: 100vw;
-  height: 100vh;
+  height: 200vh;
 `;
 
 function App() {
